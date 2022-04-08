@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from 'next/link'
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import AliveCore from "../artifacts/AliveCore.json";
@@ -157,13 +158,15 @@ const Home = () => {
             <h2>Band Deployer: {band.deployer}</h2>
             {/* <h2>Band ID: {id.toNumber()}</h2> */}
             <button className="m-4 bg-orange-500 p-4 text-xl">
+              <Link
+                href={`https://mumbai.polygonscan.com/address/${band.bandAddress}`}>
               <a
-                href={`https://mumbai.polygonscan.com/address/${band.bandAddress}`}
                 target="_blank"
                 rel="noreferrer"
               >
                 POLYGON SCAN LINK OF BAND
               </a>
+              </Link>
             </button>
           </div>
         )})}
