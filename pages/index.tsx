@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Link from 'next/link'
 import styles from "../styles/Home.module.css";
 import { Modal, Button, Group } from "@mantine/core";
 const Home: NextPage = () => {
@@ -18,7 +19,7 @@ const Home: NextPage = () => {
             style={{ backgroundColor: "#000" }}
             mx={20}
           >
-            <a href="/band">Deploy band</a>
+            <Link href="/band">Deploy band </Link>
           </Button>
         </Group>
       </main>
