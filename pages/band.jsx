@@ -152,7 +152,7 @@ const Home = () => {
         bandAddresses.map((band, index) => {
           {/* let id = new ethers.BigNumber(band.bandId); */}
           return(
-          <div>
+          <div key={index} >
             <h2>Band Address: {band.bandAddress}</h2>
             <h2>Band Deployer: {band.deployer}</h2>
             {/* <h2>Band ID: {id.toNumber()}</h2> */}
