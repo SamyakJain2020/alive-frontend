@@ -173,7 +173,7 @@ const Home = () => {
         {Network && <div>Network: {Network}</div>}
         <div className="flex  flex-col p-5 ">
           <div className="flex flex-col items-center justify-center gap-4 text-white ">
-            <label htmlFor=" bandName" class="leading-7 text-sm text-gray-600">
+            <label htmlFor=" bandName" className="leading-7 text-sm text-gray-600">
               Add Band Members:
             </label>
             {/* <input
