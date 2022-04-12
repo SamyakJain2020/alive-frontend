@@ -3,9 +3,10 @@ import Link from 'next/link'
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import AliveCore from "../artifacts/AliveCore.json";
-const aliveCoreAddress = "0x71eBbCC12b378BB9e1d5a94Ce68522907FEd26CA";
+const aliveCoreAddress = "0x078030Df03325c841d9402ec066479f5E0aAC3d1";
 const Home = () => {
   const [bandAddresses, setbandAddresses] = useState([]);
+  const [bandName, setbandName] = useState([]);
   const [Network, setNetwork] = useState(null)
   const [account, setAccount] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -29,7 +30,7 @@ const Home = () => {
       let network = await provider.getNetwork();
       setAccount(account);
       setNetwork(network.name);
-      if (network.name !== "maticmum") {
+      if (network.chainId !== 80001) {
         console.log("Wrong network");
       } else {
         console.log("maticmum connected");
@@ -73,7 +74,7 @@ const Home = () => {
     let alive = new ethers.Contract(aliveCoreAddress, AliveCore.abi, signer);
     try {
       //using code from deployer.js (backend/scripts)
-      let createBand = await alive.createBand(); // creates a empty band
+      let createBand = await alive.createBand(bandName); // creates a empty band
       await createBand.wait();
       console.log("Band created", createBand);
       setIsLoading(false);
@@ -124,7 +125,18 @@ const Home = () => {
           Network: {Network}
         </div>
       )}
-        <div className="flex p-5 ">
+        <div className="flex  flex-col p-5 ">
+          <div className="flex flex-col items-center justify-center gap-4 text-white ">
+            <label htmlFor=" bandName" class="leading-7 text-sm text-gray-600">Band Name:</label>
+              <input
+                type="text"
+                className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                name="bandName"
+                value={bandName}
+                placeholder="Band Name"
+                onChange={(e) => setbandName(e.target.value)}
+              />
+            </div>
           <button
             onClick={createCollection}
             className="m-5 cursor-pointer  rounded border bg-gradient-to-r from-pink-500/70 to-yellow-500/50 py-2 px-4 font-semibold text-white shadow-lg shadow-red-500 hover:shadow-md hover:shadow-yellow-300/50"
@@ -165,6 +177,17 @@ const Home = () => {
                 rel="noreferrer"
               >
                 POLYGON SCAN LINK OF BAND
+              </a>
+              </Link>
+            </button>
+            <button className="m-4 bg-orange-500 p-4 text-xl">
+              <Link
+                href={`/band/${band.bandAddress}`}>
+              <a
+                target="_blank"
+                rel="noreferrer"
+              >
+                GET BAND DATA
               </a>
               </Link>
             </button>
