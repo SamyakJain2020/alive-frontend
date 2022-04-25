@@ -4,7 +4,7 @@ import { MantineProvider } from '@mantine/core';
 function MyApp({ Component, pageProps }: AppProps) {
   return <MantineProvider theme={{ colorScheme: 'dark' }}>
     <Component {...pageProps} />
-  </MantineProvider>
+  </MantineProvider> 
 }
 
 export default MyApp
